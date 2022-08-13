@@ -32,11 +32,13 @@ Future<Album> fetchAlbum() async {
   // Now we check the response code and if 200, we work with it's body
   if (response.statusCode == 200) {
     // now make use of it's body creating object by decoding the Json first
-    final Map<String, dynamic> decoded =
-        jsonDecode(response.body); // the body has the json object
+    final decoded = jsonDecode(response.body); // the body has the json object
 
     // this decoded variable is now a Map<String, Dynamic>
     return Album.fromJson(decoded);
+    // return decoded.map<Album>((json) => Album.fromJson(json)).toList();
+
+    // For making a list of values, we need to have the json/decoded and map to List by taking each json value, use fromJson and do toList()
   } else {
     //  either print the status code as print('Request failed with status: $response.statusCode); or the below
     throw Exception(
@@ -91,4 +93,22 @@ class _ParseDataState extends State<ParseData> {
 
 /*
 If we had to to handle multiple objects, we have to use a List to store those objects made from Json
+var jsonData = jsonDecode(response.body)
+List<Album> users =[];
+
+// loop as multiple json objects inside this jsonData. We use allbum to be added to list instead of fromJson() factory constructor
+
+this function returns the futureVal which is used as future of FutureBuilder
+for(curr in jsonData)
+{
+  Album album = Album(userId: curr['id'], email: curr['email'], userName: curr['username']);
+  users.add(album);
+  print(users.length);
+
+  return users; // Future<List<Album>> or simply Future
+
+  Inside the FutureBuilder use ListView.builder with itemBuilder and return tiles with snapshot.data[i].username
+
+  // https://www.youtube.com/watch?v=hgPTvi0OM4A
+}
 */
