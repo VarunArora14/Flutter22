@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp_ui/constants/colors.dart';
+import 'package:whatsapp_ui/features/landing/landing_screen.dart';
 import 'package:whatsapp_ui/firebase_options.dart';
 import 'package:whatsapp_ui/utils/responsive_layout.dart';
-import 'package:whatsapp_ui/screens/mobile_layout.dart';
 import 'package:whatsapp_ui/screens/web_layout.dart';
 
 void main() async {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundColor,
       ),
       home: const ResponsiveLayout(
-        mobileLayout: MobileLayout(),
+        mobileLayout: LandingPage(),
         webLayout: WebLayout(),
       ),
       // both are widgets(scaffolds) being used to decide the layout
